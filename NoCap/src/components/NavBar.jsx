@@ -17,7 +17,7 @@ function NavBar() {
     { name: "Home", icon: Home, href: "home" },
     { name: "Detect", icon: Zap, href: "detect" },
     { name: "Features", icon: Shield, href: "features" },
-    { name: "Learn", icon: BookOpen, href: "learn" },
+    { name: "History", icon: BookOpen, href: "history" },
     { name: "Report", icon: FileText, href: "report" },
   ];
 
@@ -25,15 +25,14 @@ function NavBar() {
     <div className="min-h-[80px]">
       {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
             ? "bg-white/80 backdrop-blur-lg shadow-lg"
             : "bg-red-200"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            
+
             {/* Logo */}
             <div className="flex items-center space-x-3 group cursor-pointer">
               <div className="relative w-10 h-10">
@@ -66,7 +65,7 @@ function NavBar() {
                         {link.name}
                       </span>
                     </div>
-                   
+
                   </a>
                 );
               })}
@@ -89,7 +88,7 @@ function NavBar() {
               </button>
             </div>
 
-           
+
           </div>
         </div>
 

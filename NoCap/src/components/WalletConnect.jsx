@@ -1,9 +1,22 @@
 import React, { useState, useRef } from "react";
 import { ethers } from "ethers";
 
-const WalletConnect = ({ onSign }) => {
+const WalletConnect = ({ onSign, onConnect }) => {
     const [account, setAccount] = useState("");
     const providerRef = useRef(null);
+
+    React.useEffect(() => {
+        const checkExisting = async () => {
+            if (window.ethereum) {
+                const accounts = await window.ethereum.request({ method: "eth_accounts" });
+                if (accounts.length > 0) {
+                    setAccount(accounts[0]);
+                    if (onConnect) onConnect(accounts[0]);
+                }
+            }
+        };
+        checkExisting();
+    }, []);
 
     const getProvider = () => {
         if (typeof window !== "undefined" && window.ethereum && !providerRef.current) {
@@ -23,6 +36,7 @@ const WalletConnect = ({ onSign }) => {
             const signer = await provider.getSigner();
             const address = await signer.getAddress();
             setAccount(address);
+            if (onConnect) onConnect(address);
         } catch (error) {
             console.error("Error connecting wallet:", error);
         }

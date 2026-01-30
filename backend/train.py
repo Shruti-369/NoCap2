@@ -27,12 +27,17 @@ def stemming(content):
     return stemmed_content
 
 # Step 2: Load Dataset
-dataset_dir = '/home/ubuntu-nishchay/Fake_newsDetection/dataset/archive'
+# Get the directory where train.py is located
+base_dir = os.path.dirname(os.path.abspath(__file__))
+# Dataset is expected to be in ../dataset/archive relative to backend/
+dataset_dir = os.path.join(os.path.dirname(base_dir), 'dataset', 'archive')
+
 fake_path = os.path.join(dataset_dir, 'fake.csv')
 true_path = os.path.join(dataset_dir, 'true.csv')
 
 if not os.path.exists(fake_path) or not os.path.exists(true_path):
     print(f"Error: Dataset files not found in {dataset_dir}.")
+    print("Please ensure 'dataset/archive/fake.csv' and 'dataset/archive/true.csv' exist.")
     exit(1)
 
 print("Loading datasets...")
@@ -102,10 +107,13 @@ print(f'Accuracy on test data: {test_data_accuracy:.4f}')
 
 # Save Models
 print("Saving model and vectorizer...")
-with open('/home/ubuntu-nishchay/Fake_newsDetection/backend/finalized_model.pkl', 'wb') as f:
+model_path = os.path.join(base_dir, 'finalized_model.pkl')
+vectorizer_path = os.path.join(base_dir, 'vectorizer.pkl')
+
+with open(model_path, 'wb') as f:
     pickle.dump(model, f)
 
-with open('/home/ubuntu-nishchay/Fake_newsDetection/backend/vectorizer.pkl', 'wb') as f:
+with open(vectorizer_path, 'wb') as f:
     pickle.dump(vectorizer, f)
 
 print("Success! finalized_model.pkl and vectorizer.pkl created.")

@@ -5,6 +5,7 @@ import Home from "./components/Home.jsx";
 import Detect from "./components/Detect.jsx";
 import Features from "./components/Features.jsx";
 import Report from "./components/Report.jsx";
+import History from "./components/History.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/detect" element={<Detect />} />
         <Route path="/features" element={<Features />} />
         <Route path="/report" element={<Report />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </BrowserRouter>
   );
