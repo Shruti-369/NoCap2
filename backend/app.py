@@ -350,7 +350,7 @@ def get_history(wallet_address):
         return jsonify({"error": "Failed to fetch history"}), 500
 
 if __name__ == "__main__":
-   app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=5000)
 
 
 
